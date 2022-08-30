@@ -25,6 +25,8 @@ export function Authenticated(
 
         //ID do token no request
         req.user_id = sub;
+
+        return next();
         
     } catch(err) {
         return res.status(401).end();
