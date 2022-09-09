@@ -15,6 +15,9 @@ import { ListByCategoryController } from './controllers/product/ListByCategoryCo
 
 import { CreateOrderController } from './controllers/order/CreateOrderController';
 import { RemoveOrderController } from './controllers/order/RemoveOrderController';
+import { AddItemController } from './controllers/order/AddItemController';
+import { RemoveItemController } from './controllers/order/RemoveItemController';
+import { SendOrderController } from './controllers/order/SendOrderController';
 
 const router = Router();
 
@@ -36,5 +39,10 @@ router.post('/product', Authenticated, upload.single('file'), new CreateProductC
 // Rotas order
 router.post('/order', Authenticated, new CreateOrderController().handle);
 router.delete('/order', Authenticated, new RemoveOrderController().handle);
+
+router.put('/order/send', Authenticated, new SendOrderController().handle);
+
+router.post('/item', Authenticated, new AddItemController().handle);
+router.delete('/item', Authenticated, new RemoveItemController().handle);
 
 export { router };
