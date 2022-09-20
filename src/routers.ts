@@ -18,6 +18,9 @@ import { RemoveOrderController } from './controllers/order/RemoveOrderController
 import { AddItemController } from './controllers/order/AddItemController';
 import { RemoveItemController } from './controllers/order/RemoveItemController';
 import { SendOrderController } from './controllers/order/SendOrderController';
+import { ListOrdersController } from './controllers/order/ListOrdersController';
+import { DetailOrderController } from './controllers/order/DetailOrderController';
+import { FinishOrderController } from './controllers/order/FinishOrderController';
 
 const router = Router();
 
@@ -39,8 +42,11 @@ router.post('/product', Authenticated, upload.single('file'), new CreateProductC
 // Rotas order
 router.post('/order', Authenticated, new CreateOrderController().handle);
 router.delete('/order', Authenticated, new RemoveOrderController().handle);
+router.get('/order', Authenticated, new DetailOrderController().handle);
 
 router.put('/order/send', Authenticated, new SendOrderController().handle);
+router.put('/order/finish', Authenticated, new FinishOrderController().handle);
+router.get('/orders', Authenticated, new ListOrdersController().handle);
 
 router.post('/item', Authenticated, new AddItemController().handle);
 router.delete('/item', Authenticated, new RemoveItemController().handle);
